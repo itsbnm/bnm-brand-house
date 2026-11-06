@@ -35,10 +35,10 @@ async function ProductBody({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 lg:grid-cols-2">
-      <div className="panel min-h-80 rounded-3xl p-6 text-paper">
-        <p className="text-xs tracking-[0.18em] text-gold-2 uppercase">{product.category}</p>
+      <div className="panel min-h-80 rounded-3xl p-6">
+        <p className="text-xs tracking-[0.18em] text-gold uppercase">{product.category}</p>
         <h1 className="mt-4 text-5xl">{product.name}</h1>
-        <p className="mt-4 max-w-sm text-paper/80">{product.summary}</p>
+        <p className="mt-4 max-w-sm text-muted">{product.summary}</p>
       </div>
       <div>
         <p className="text-3xl">{money(product.price)}</p>

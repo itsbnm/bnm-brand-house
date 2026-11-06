@@ -53,7 +53,7 @@ export function Desk() {
       ) : null}
       <button
         type="button"
-        className="rounded-full bg-ink px-4 py-2.5 text-sm text-paper shadow-lg"
+        className="rounded-full bg-accent px-4 py-2.5 text-sm text-white shadow-lg"
         onClick={() => setOpen((value) => !value)}
       >
         {open ? "Hide desk" : "Ask the desk"}

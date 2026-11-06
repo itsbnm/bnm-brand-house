@@ -81,11 +81,11 @@ async function ServiceBody({ params }: { params: Promise<{ slug: string }> }) {
                   Request a quote
                 </Link>
               ) : offer.id === "strategy-session" ? (
-                <Link href="/consult" className="mt-4 inline-flex rounded-full bg-ink px-4 py-2 text-sm text-paper">
+                <Link href="/consult" className="mt-4 inline-flex rounded-full bg-accent px-4 py-2 text-sm text-white">
                   Book now
                 </Link>
               ) : (
-                <Link href={`/checkout?offer=${offer.id}`} className="mt-4 inline-flex rounded-full bg-ink px-4 py-2 text-sm text-paper">
+                <Link href={`/checkout?offer=${offer.id}`} className="mt-4 inline-flex rounded-full bg-accent px-4 py-2 text-sm text-white">
                   Reserve · {money(offer.price)}
                 </Link>
               )}

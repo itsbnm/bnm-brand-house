@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Sofia_Sans } from "next/font/google";
 import { SiteFrame } from "@/components/site-frame";
 import { studio } from "@/lib/content";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const sofia = Sofia_Sans({
+  variable: "--font-sofia",
   subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${outfit.variable} ${fraunces.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${sofia.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <SiteFrame>{children}</SiteFrame>
       </body>

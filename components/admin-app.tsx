@@ -88,7 +88,7 @@ export function AdminApp() {
           />
         </label>
         {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
-        <button className="mt-4 rounded-full bg-ink px-5 py-2.5 text-sm text-paper">Enter</button>
+        <button className="mt-4 rounded-full bg-accent px-5 py-2.5 text-sm text-white">Enter</button>
       </form>
     );
   }
@@ -166,7 +166,7 @@ export function AdminApp() {
           <input name="category" placeholder="Category" className={inputClass} defaultValue="Studio" />
           <input name="excerpt" placeholder="Short summary" className={inputClass} />
           <textarea name="body" placeholder="One paragraph per block" rows={6} className={inputClass} required />
-          <button className="rounded-full bg-ink px-5 py-2.5 text-sm text-paper">Publish</button>
+          <button className="rounded-full bg-accent px-5 py-2.5 text-sm text-white">Publish</button>
         </form>
         {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
         <ul className="mt-4 text-sm text-muted">

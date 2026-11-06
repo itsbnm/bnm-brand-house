@@ -77,7 +77,7 @@ function FilterButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full border px-3 py-1.5 text-sm ${active ? "border-ink bg-ink text-paper" : "border-line"}`}
+      className={`rounded-full border px-3 py-1.5 text-sm ${active ? "border-accent bg-accent text-white" : "border-line"}`}
     >
       {children}
     </button>

@@ -22,14 +22,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="mark" aria-hidden>
-            B
-          </span>
-          <span>
-            <span className="block text-sm tracking-[0.16em] uppercase">{studio.name}</span>
-            <span className="block text-xs text-muted">{studio.line}</span>
-          </span>
+        <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <img src="/logo-lockup.svg" alt={studio.name} className="h-9 w-auto sm:h-10" />
         </Link>
         <nav className="hidden items-center gap-5 text-sm lg:flex" aria-label="Primary">
           {links.map(([label, href]) => (
@@ -44,7 +38,7 @@ export function Header() {
           </Link>
           <Link
             href="/consult"
-            className="hidden rounded-full bg-ink px-4 py-1.5 text-sm text-paper sm:inline-flex"
+            className="hidden rounded-full bg-accent px-4 py-1.5 text-sm text-white sm:inline-flex"
           >
             Book a consultation
           </Link>

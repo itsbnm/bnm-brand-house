@@ -25,7 +25,7 @@ export function ResourceGate({ resource }: { resource: Resource }) {
     return (
       <div className="mt-8 rounded-3xl border border-line bg-card p-6">
         <p className="text-muted">Reserve this to read it on the site. It stays available in this browser after checkout.</p>
-        <Link href={`/checkout?resource=${resource.slug}`} className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm text-paper">
+        <Link href={`/checkout?resource=${resource.slug}`} className="mt-4 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm text-white">
           Reserve access
         </Link>
       </div>

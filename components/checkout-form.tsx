@@ -126,7 +126,7 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
           </ul>
         )}
         {mode === "cart" && rows.length > 0 ? (
-          <Link href="/checkout" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm text-paper">
+          <Link href="/checkout" className="mt-4 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm text-white">
             Continue to checkout
           </Link>
         ) : null}
@@ -169,7 +169,7 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
           <button
             type="submit"
             disabled={pending}
-            className="mt-4 w-full rounded-full bg-ink px-5 py-2.5 text-sm text-paper disabled:opacity-60"
+            className="mt-4 w-full rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-60"
           >
             {pending ? "Reserving…" : `Reserve · ${money(total)}`}
           </button>

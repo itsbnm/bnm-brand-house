@@ -13,7 +13,7 @@ export default function HomePage() {
             BNM Brand House is a branding and communications studio. The site is built so you can decide, book, buy, or request a quote without waiting for a reply to find the door.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/guide" className="rounded-full bg-ink px-5 py-2.5 text-sm text-paper">
+            <Link href="/guide" className="rounded-full bg-accent px-5 py-2.5 text-sm text-white">
               Find your next step
             </Link>
             <Link href="/services" className="rounded-full border border-line px-5 py-2.5 text-sm">
@@ -27,8 +27,8 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="panel flex min-h-72 flex-col justify-between rounded-3xl p-6 text-paper">
-          <p className="text-xs tracking-[0.2em] text-gold-2 uppercase">A visitor should be able to</p>
+        <div className="panel flex min-h-72 flex-col justify-between rounded-3xl p-6">
+          <p className="text-xs tracking-[0.2em] text-gold uppercase">A visitor should be able to</p>
           <ul className="mt-6 grid gap-3 text-lg">
             <li>Understand the practice in a minute</li>
             <li>Book a fixed service or a consultation</li>
@@ -40,6 +40,7 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+      <div className="checker mx-auto mt-8 mb-12 h-5 max-w-6xl" aria-hidden="true" />
 
       <section className="mx-auto max-w-6xl px-5">
         <div className="flex items-end justify-between gap-4">
@@ -104,7 +105,7 @@ export default function HomePage() {
           <p className="mt-3 leading-7 text-muted">
             Seventy-five minutes. You leave with a position to test and the next engagement, if one is warranted. Weekday times are held when you confirm.
           </p>
-          <Link href="/consult" className="mt-6 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm text-paper">
+          <Link href="/consult" className="mt-6 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm text-white">
             See open times · $250
           </Link>
         </div>

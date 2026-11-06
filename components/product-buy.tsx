@@ -45,7 +45,7 @@ export function ProductBuy({ product }: { product: Product }) {
           onChange={(event) => setQty(Number(event.target.value))}
         />
       </Field>
-      <button className="rounded-full bg-ink px-5 py-2.5 text-sm text-paper">Add to cart</button>
+      <button className="rounded-full bg-accent px-5 py-2.5 text-sm text-white">Add to cart</button>
       {added ? <p className="text-sm text-muted">Added. The cart keeps it on this browser.</p> : null}
     </form>
   );

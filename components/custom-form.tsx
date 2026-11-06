@@ -109,16 +109,16 @@ export function CustomForm() {
           <input name="company" className="hidden" tabIndex={-1} autoComplete="off" />
         </div>
         {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
-        <button disabled={pending} className="mt-4 rounded-full bg-ink px-5 py-2.5 text-sm text-paper disabled:opacity-60">
+        <button disabled={pending} className="mt-4 rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-60">
           {pending ? "Sending…" : "Send the request"}
         </button>
       </form>
-      <aside className="rounded-3xl border border-line bg-ink p-6 text-paper">
-        <p className="text-xs tracking-[0.18em] text-gold-2 uppercase">Automated estimate</p>
+      <aside className="rounded-3xl bg-accent p-6 text-[#040113]">
+        <p className="text-xs tracking-[0.18em] uppercase">Automated estimate</p>
         <p className="mt-3 text-4xl">
           {money(estimate.low)}–{money(estimate.high)}
         </p>
-        <ul className="mt-4 grid gap-2 text-sm leading-6 text-paper/80">
+        <ul className="mt-4 grid gap-2 text-sm leading-6">
           {estimate.assumptions.map((item) => (
             <li key={item}>{item}</li>
           ))}

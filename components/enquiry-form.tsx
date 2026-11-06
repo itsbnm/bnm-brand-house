@@ -73,7 +73,7 @@ export function EnquiryForm({ initialTopic = "General enquiry" }: { initialTopic
         <input name="company" className="hidden" tabIndex={-1} autoComplete="off" />
       </div>
       {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
-      <button disabled={pending} className="mt-4 rounded-full bg-ink px-5 py-2.5 text-sm text-paper disabled:opacity-60">
+      <button disabled={pending} className="mt-4 rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-60">
         {pending ? "Sending…" : "Send to the studio"}
       </button>
     </form>

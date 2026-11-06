@@ -32,7 +32,7 @@ export function GuideWizard() {
           <h2 className="mt-2 text-3xl">{result.title}</h2>
           <p className="mt-3 max-w-2xl leading-7 text-muted">{result.text}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href={result.href} className="rounded-full bg-ink px-5 py-2.5 text-sm text-paper">
+            <Link href={result.href} className="rounded-full bg-accent px-5 py-2.5 text-sm text-white">
               {result.action}
             </Link>
             <button

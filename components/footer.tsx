@@ -6,8 +6,8 @@ export function Footer() {
     <footer className="mt-20 border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-sm tracking-[0.16em] uppercase">{studio.name}</p>
-          <p className="mt-3 text-sm leading-6 text-muted">
+          <img src="/logo-lockup.svg" alt={studio.name} className="h-10 w-auto" />
+          <p className="mt-4 text-sm leading-6 text-muted">
             {studio.promise} {studio.line}
           </p>
         </div>

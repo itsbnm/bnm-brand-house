@@ -77,7 +77,7 @@ export function FeedbackWall() {
             <input name="company" className="hidden" tabIndex={-1} autoComplete="off" />
           </div>
           {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
-          <button className="mt-4 rounded-full bg-ink px-5 py-2.5 text-sm text-paper">Submit for review</button>
+          <button className="mt-4 rounded-full bg-accent px-5 py-2.5 text-sm text-white">Submit for review</button>
         </form>
       )}
     </div>

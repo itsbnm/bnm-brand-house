@@ -28,7 +28,7 @@ export function PrimaryLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-2.5 text-sm text-paper hover:bg-gold"
+      className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm text-white hover:bg-[#db4f28]"
     >
       {children}
     </Link>
