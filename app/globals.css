@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #f3efe6;
+  --color-ink: #1b1714;
+  --color-muted: #5e574e;
+  --color-line: #e2d8c8;
+  --color-card: #faf7f2;
+  --color-gold: #8d6840;
+  --color-gold-2: #c6a36a;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display);
+  font-weight: 460;
+  letter-spacing: -0.03em;
+}
+
+::selection {
+  background: #ead7b4;
+  color: #1b1714;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.mark {
+  display: grid;
+  height: 2rem;
+  width: 2rem;
+  place-items: center;
+  border: 1px solid var(--color-ink);
+  background:
+    linear-gradient(#1b1714, #1b1714) 58% 42% / 38% 8% no-repeat,
+    linear-gradient(#1b1714, #1b1714) 42% 58% / 8% 38% no-repeat,
+    #f3efe6;
+  color: #1b1714;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.panel {
+  background:
+    radial-gradient(circle at 20% 20%, rgb(198 163 106 / 0.35), transparent 28%),
+    linear-gradient(160deg, #2a241e, #141210 70%);
+}
