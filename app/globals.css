@@ -20,8 +20,8 @@ html {
 body {
   background-color: #040113;
   background-image:
-    linear-gradient(to right, rgb(7 129 198 / 0.14) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(7 129 198 / 0.14) 1px, transparent 1px);
+    linear-gradient(to right, rgb(7 129 198 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(7 129 198 / 0.055) 1px, transparent 1px);
   background-size: 88px 88px;
   color: #f2f2f3;
   font-family: var(--font-sans);
@@ -32,8 +32,8 @@ h2,
 h3,
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.045em;
+  font-weight: 500;
+  letter-spacing: -0.04em;
 }
 
 ::selection {
