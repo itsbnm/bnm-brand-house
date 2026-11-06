@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
-import { adminCookie, adminToken, passwordMatches } from "@/lib/auth";
+import { adminCookie, adminReadyForProduction, adminToken, passwordMatches } from "@/lib/auth";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
+  if (!adminReadyForProduction()) {
+    return NextResponse.json(
+      { error: "Set ADMIN_PASSWORD and ADMIN_SECRET on Vercel before signing in." },
+      { status: 503 },
+    );
+  }
   const password = String(body?.password || "");
   if (!passwordMatches(password)) {
     return NextResponse.json({ error: "That password is not recognised." }, { status: 401 });

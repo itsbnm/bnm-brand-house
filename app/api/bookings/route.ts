@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { reference } from "@/lib/money";
+import { initializePaystack, requestOrigin } from "@/lib/paystack";
 import { upcomingSlots } from "@/lib/slots";
 import { readStore, updateStore } from "@/lib/store";
 import type { Booking } from "@/lib/types";
@@ -54,5 +55,30 @@ export async function POST(request: Request) {
   if (!saved) {
     return NextResponse.json({ error: "That time was just taken. Choose another." }, { status: 409 });
   }
-  return NextResponse.json({ id: booking.id, reference: booking.reference, slotLabel: booking.slotLabel });
+  const payment = await initializePaystack({
+    email,
+    amountMajor: 250,
+    reference: booking.reference,
+    callbackUrl: `${requestOrigin(request)}/pay/return`,
+    metadata: {
+      kind: "booking",
+      bookingId: booking.id,
+      customer: name,
+      phone,
+      slot: booking.slotLabel,
+    },
+  });
+  if (!payment.ok && payment.reason === "failed") {
+    updateStore((data) => {
+      const savedBooking = data.bookings.find((item) => item.id === booking.id);
+      if (savedBooking && savedBooking.status === "reserved") savedBooking.status = "cancelled";
+    });
+    return NextResponse.json({ error: payment.message }, { status: 502 });
+  }
+  return NextResponse.json({
+    id: booking.id,
+    reference: booking.reference,
+    slotLabel: booking.slotLabel,
+    authorizationUrl: payment.ok ? payment.url : undefined,
+  });
 }

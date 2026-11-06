@@ -37,14 +37,14 @@ export const deskAnswers = [
   {
     q: "How do I read a course or workbook?",
     keys: ["course", "book", "resource", "learn", "workbook", "download"],
-    a: "The readiness checklist is open. The workbook and the Brand decisions course unlock on this site as soon as checkout reserves them. Phase 2 will add a fuller learning system.",
+    a: "The readiness checklist is open. The workbook and the Brand decisions course open in this browser after Paystack marks the order paid.",
     href: "/resources",
     label: "Browse resources",
   },
   {
     q: "How does payment work?",
     keys: ["pay", "payment", "paystack", "card", "invoice", "transfer"],
-    a: "Checkout reserves the order and issues a reference. Live card charging is set up for Paystack, which covers local and international cards. Until that account is connected, the studio collects against the reference and marks the order paid.",
+    a: "Shop orders, fixed services, paid resources, and the $250 consultation are charged on Paystack. Custom print stays an estimate until the studio confirms it. If the Paystack key is missing on the server, checkout reserves a reference instead of charging the card.",
     href: "/checkout",
     label: "Go to checkout",
   },

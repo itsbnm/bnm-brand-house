@@ -18,7 +18,7 @@ export default function ConsultPage() {
         />
         <ul className="mt-8 grid gap-3 text-sm leading-6 text-muted">
           <li>75 minutes, weekdays, held in Africa/Lagos time.</li>
-          <li>$250, reserved with your details. The studio collects against the reference.</li>
+          <li>$250, charged on Paystack. Without the studio key, the time is held and collected against the reference.</li>
           <li>Bring the checklist if you can. Blank answers are allowed. Hidden ones are not useful.</li>
           <li>You receive the time, the reference, and what to send before the call.</li>
         </ul>

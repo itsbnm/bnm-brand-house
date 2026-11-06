@@ -19,6 +19,7 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [delivery, setDelivery] = useState("pickup");
+  const paymentFailed = params.get("payment") === "failed";
 
   const drafts = useMemo<Draft[]>(() => {
     if (offer) return [{ kind: "service", id: offer, qty: 1 }];
@@ -66,14 +67,13 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
     const data = await response.json();
     setPending(false);
     if (!response.ok) {
-      setError(data.error || "The order could not be reserved.");
+      setError(data.error || "The order could not be placed.");
       return;
     }
     if (hasProduct && !offer && !resource) cart.clear();
-    if (rows.some((row) => row.kind === "resource")) {
-      const owned = JSON.parse(localStorage.getItem("bnm-resources") || "[]") as string[];
-      const next = Array.from(new Set([...owned, ...rows.filter((row) => row.kind === "resource").map((row) => row.id)]));
-      localStorage.setItem("bnm-resources", JSON.stringify(next));
+    if (data.authorizationUrl) {
+      window.location.href = data.authorizationUrl;
+      return;
     }
     router.push(`/confirmed?kind=order&id=${data.id}`);
   }
@@ -133,9 +133,9 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
       </div>
       {mode === "checkout" && rows.length > 0 ? (
         <form action={submit} className="rounded-3xl border border-line bg-card p-6">
-          <h2 className="text-2xl">Reserve</h2>
+          <h2 className="text-2xl">Pay</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            This reserves the order in the studio and issues a reference. Paystack will charge local and international cards once the studio account is connected. Until then, the team collects against this reference.
+            The server sets the price. Paystack charges the card. If the Paystack key is not on this server yet, the order is reserved and the studio collects against the reference.
           </p>
           <div className="mt-4 grid gap-3">
             <Field label="Name">
@@ -165,13 +165,16 @@ export function CheckoutForm({ mode }: { mode: "cart" | "checkout" }) {
             <span>Total</span>
             <span>{money(total)}</span>
           </p>
+          {paymentFailed ? (
+            <p className="mt-3 text-sm text-gold">The card payment did not complete. Nothing was marked paid. You can try again.</p>
+          ) : null}
           {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
           <button
             type="submit"
             disabled={pending}
             className="mt-4 w-full rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-60"
           >
-            {pending ? "Reserving…" : `Reserve · ${money(total)}`}
+            {pending ? "Opening payment…" : `Pay · ${money(total)}`}
           </button>
         </form>
       ) : null}

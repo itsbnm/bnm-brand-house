@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { deliveryFee, priceCatalogueLine } from "@/lib/catalogue";
 import { reference } from "@/lib/money";
+import { initializePaystack, requestOrigin } from "@/lib/paystack";
 import { updateStore } from "@/lib/store";
 import type { Order, OrderLine } from "@/lib/types";
 
@@ -52,10 +53,31 @@ export async function POST(request: Request) {
   updateStore((data) => {
     data.orders.unshift(order);
   });
+  const payment = await initializePaystack({
+    email,
+    amountMajor: order.total,
+    reference: order.reference,
+    callbackUrl: `${requestOrigin(request)}/pay/return`,
+    metadata: {
+      kind: "order",
+      orderId: order.id,
+      customer: name,
+      phone,
+      summary: lines.map((line) => `${line.name} x${line.qty}`).join("; ").slice(0, 400),
+    },
+  });
+  if (!payment.ok && payment.reason === "failed") {
+    updateStore((data) => {
+      const saved = data.orders.find((item) => item.id === order.id);
+      if (saved && saved.status === "reserved") saved.status = "cancelled";
+    });
+    return NextResponse.json({ error: payment.message }, { status: 502 });
+  }
   return NextResponse.json({
     id: order.id,
     reference: order.reference,
     total: order.total,
     lines: order.lines,
+    authorizationUrl: payment.ok ? payment.url : undefined,
   });
 }

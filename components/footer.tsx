@@ -46,6 +46,15 @@ export function Footer() {
           <Link href="/testimonials" className="block">
             Client feedback
           </Link>
+          <Link href="/legal/terms" className="block">
+            Terms
+          </Link>
+          <Link href="/legal/privacy" className="block">
+            Privacy
+          </Link>
+          <Link href="/legal/refunds" className="block">
+            Refunds
+          </Link>
         </div>
         <div className="text-sm leading-7">
           <p className="text-muted">Studio</p>

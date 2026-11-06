@@ -49,13 +49,17 @@ export function ConsultBooker() {
       }
       return;
     }
+    if (data.authorizationUrl) {
+      window.location.href = data.authorizationUrl;
+      return;
+    }
     router.push(`/confirmed?kind=booking&id=${data.id}`);
   }
 
   return (
     <form action={submit} className="rounded-3xl border border-line bg-card p-6">
       <h2 className="text-2xl">Choose a time</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">Weekday sessions at 10:00, 13:00, and 16:00 WAT. $250, held when you confirm.</p>
+      <p className="mt-2 text-sm leading-6 text-muted">Weekday sessions at 10:00, 13:00, and 16:00 WAT. $250, charged on Paystack when the studio key is connected.</p>
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
         {slots.map((slot) => (
           <label key={slot.id} className={`rounded-xl border px-3 py-2 text-sm ${slotId === slot.id ? "border-ink" : "border-line"}`}>
@@ -94,7 +98,7 @@ export function ConsultBooker() {
       </div>
       {error ? <p className="mt-3 text-sm text-gold">{error}</p> : null}
       <button type="submit" disabled={pending || !slotId} className="mt-4 rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-60">
-        {pending ? "Holding the time…" : "Reserve this session · $250"}
+        {pending ? "Opening payment…" : "Pay $250 and hold this time"}
       </button>
     </form>
   );
