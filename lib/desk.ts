@@ -14,6 +14,13 @@ export const deskAnswers = [
     label: "Take the test",
   },
   {
+    q: "Where are the courses?",
+    keys: ["course", "learn", "lesson", "class", "video", "pdf", "book", "study"],
+    a: "Courses live under Courses. Each one is organised by week, with video, reading, and books you turn on the page. A book is not offered as a download.",
+    href: "/learn",
+    label: "Browse courses",
+  },
+  {
     q: "What does identity cost?",
     keys: ["price", "cost", "how much", "identity", "logo", "package", "rate"],
     a: "Brand essentials is $800, presence is $1,500, signature is $2,500, and the premium system is $3,500. Bespoke partnerships start from $5,000 after discovery. Strategy is scoped separately.",

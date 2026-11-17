@@ -9,7 +9,12 @@ export default function AdminPage() {
       <p className="text-xs tracking-[0.18em] text-gold uppercase">Studio</p>
       <h1 className="mt-3 text-5xl">Orders, bookings, and the journal.</h1>
       <p className="mt-4 max-w-2xl text-muted">
-        Reserve payments here once they clear. Approve feedback before it is public. Publish a journal note without a developer. Services, products, and the fixed articles live with the site content so prices cannot drift from the rate card by accident.
+        Reserve payments here once they clear. Approve feedback before it is public. Publish a journal note without a developer. Build courses from the courses desk. Services, products, and the fixed articles live with the site content so prices cannot drift from the rate card by accident.
+      </p>
+      <p className="mt-3 text-sm">
+        <a href="/admin/courses" className="text-gold-2">
+          Open the courses desk
+        </a>
       </p>
       <AdminApp />
     </div>

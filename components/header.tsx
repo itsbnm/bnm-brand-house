@@ -11,6 +11,7 @@ const links = [
   ["Services", "/services"],
   ["Work", "/work"],
   ["Shop", "/shop"],
+  ["Courses", "/learn"],
   ["Resources", "/resources"],
   ["Journal", "/journal"],
   ["About", "/about"],

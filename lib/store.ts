@@ -5,7 +5,7 @@ import type { StudioData } from "./types";
 const file = path.join(process.cwd(), "data", "studio.json");
 
 function empty(): StudioData {
-  return { orders: [], bookings: [], enquiries: [], testimonials: [], articles: [] };
+  return { orders: [], bookings: [], enquiries: [], testimonials: [], articles: [], courses: [], enrollments: [] };
 }
 
 export function readStore(): StudioData {

@@ -126,10 +126,52 @@ export type Testimonial = {
 
 export type ExtraArticle = Article & { id: string; status: "draft" | "published" };
 
+export type LessonKind = "video" | "text" | "book";
+
+export type Lesson = {
+  id: string;
+  title: string;
+  kind: LessonKind;
+  text?: string;
+  videoUrl?: string;
+  mediaId?: string;
+  minutes?: number;
+};
+
+export type CourseModule = {
+  id: string;
+  title: string;
+  lessons: Lesson[];
+};
+
+export type Course = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  level: "Beginner" | "Intermediate" | "Advanced";
+  price: number;
+  status: "draft" | "published";
+  createdAt: string;
+  modules: CourseModule[];
+};
+
+export type Enrollment = {
+  id: string;
+  courseId: string;
+  name: string;
+  email: string;
+  createdAt: string;
+  completed: string[];
+};
+
 export type StudioData = {
   orders: Order[];
   bookings: Booking[];
   enquiries: Enquiry[];
   testimonials: Testimonial[];
   articles: ExtraArticle[];
+  courses: Course[];
+  enrollments: Enrollment[];
 };

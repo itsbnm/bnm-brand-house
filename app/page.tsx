@@ -41,6 +41,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="mx-auto mt-16 max-w-6xl px-5">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="text-[11px] tracking-[0.28em] text-muted uppercase">Courses</p>
+            <h2 className="mt-3 text-4xl">Take a course on the site.</h2>
+          </div>
+          <Link href="/learn" className="text-sm text-gold-2">
+            Browse courses
+          </Link>
+        </div>
+      </section>
+
       <section className="mx-auto mt-28 max-w-6xl px-5">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-3xl">Services</h2>

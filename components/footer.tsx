@@ -22,6 +22,9 @@ export function Footer() {
           <Link href="/shop" className="block">
             Shop
           </Link>
+          <Link href="/learn" className="block">
+            Courses
+          </Link>
           <Link href="/resources" className="block">
             Resources
           </Link>
