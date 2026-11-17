@@ -75,6 +75,7 @@ export function ArchetypeTest() {
             Question {step + 1} of {archetypeQuestions.length}
           </p>
           <legend className="mt-3 text-2xl">{audience === "personal" ? question.personal : question.business}</legend>
+          <p className="mt-2 text-sm text-muted">Pick the closest one. There isn’t a right answer.</p>
           <div className="mt-4 grid gap-3">
             {question.choices.map((choice) => (
               <Choice

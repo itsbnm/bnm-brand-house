@@ -13,7 +13,7 @@ export default function ArchetypePage() {
       <PageIntro
         eyebrow="Archetype"
         title="The character the brand already leans toward."
-        text="Six short questions, for yourself or for a business. You leave with a main archetype and the one that sits beside it. It is a reading, not a diagnosis."
+        text="Six easy questions, for yourself or for a business. Pick the answer that feels closest. You leave with a main archetype and the one beside it."
       />
       <ArchetypeTest />
     </div>
