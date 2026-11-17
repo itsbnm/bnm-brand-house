@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/testimonials",
     "/contact",
     "/guide",
+    "/archetype",
     "/legal/terms",
     "/legal/privacy",
     "/legal/refunds",

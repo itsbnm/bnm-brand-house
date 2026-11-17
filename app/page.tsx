@@ -27,6 +27,21 @@ export default function HomePage() {
       <TeeStudio />
 
       <section className="mx-auto mt-28 max-w-6xl px-5">
+        <div className="grid items-end gap-8 border border-line/70 p-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <p className="text-[11px] tracking-[0.28em] text-muted uppercase">Archetype</p>
+            <h2 className="mt-3 max-w-xl text-4xl">Find the character the brand already has.</h2>
+            <p className="mt-4 max-w-lg text-sm leading-7 text-muted">
+              Six easy questions, for yourself or for a business. The result names a main archetype and a secondary one.
+            </p>
+          </div>
+          <Link href="/archetype" className="text-sm text-gold-2 lg:justify-self-end">
+            Take the test
+          </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-28 max-w-6xl px-5">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-3xl">Services</h2>
           <Link href="/services" className="text-sm text-gold">

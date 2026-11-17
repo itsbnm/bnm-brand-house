@@ -34,6 +34,9 @@ export function Footer() {
           <Link href="/guide" className="block">
             Find your next step
           </Link>
+          <Link href="/archetype" className="block">
+            Brand archetype
+          </Link>
           <Link href="/consult" className="block">
             Book a consultation
           </Link>

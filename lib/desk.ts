@@ -7,6 +7,13 @@ export const deskAnswers = [
     label: "Open the guide",
   },
   {
+    q: "What is my brand archetype?",
+    keys: ["archetype", "personality", "character", "test", "quiz", "innocent", "hero", "sage"],
+    a: "Take the archetype test. Six questions, for you or for a business. It returns a main archetype and a secondary one.",
+    href: "/archetype",
+    label: "Take the test",
+  },
+  {
     q: "What does identity cost?",
     keys: ["price", "cost", "how much", "identity", "logo", "package", "rate"],
     a: "Brand essentials is $800, presence is $1,500, signature is $2,500, and the premium system is $3,500. Bespoke partnerships start from $5,000 after discovery. Strategy is scoped separately.",

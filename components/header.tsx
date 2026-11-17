@@ -7,6 +7,7 @@ import { useCart } from "./cart";
 
 const links = [
   ["Guide", "/guide"],
+  ["Archetype", "/archetype"],
   ["Services", "/services"],
   ["Work", "/work"],
   ["Shop", "/shop"],
