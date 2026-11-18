@@ -18,7 +18,7 @@ export function GuideWizard() {
   const result = who && need && when ? recommend(who, need, when) : null;
 
   return (
-    <div className="mt-10 rounded-3xl border border-line bg-card p-6 sm:p-8">
+    <div className="mt-12 rounded-[32px] bg-card p-6 sm:p-10">
       <ol className="flex gap-4 text-xs tracking-[0.16em] text-muted uppercase">
         {steps.map((label, index) => (
           <li key={label} className={index === step && !result ? "text-ink" : undefined}>
@@ -63,7 +63,7 @@ export function GuideWizard() {
               <button
                 key={option.id}
                 type="button"
-                className="rounded-2xl border border-line px-4 py-3 text-left hover:border-ink"
+                className="min-h-16 rounded-2xl border border-line bg-white px-5 py-4 text-left text-[17px] transition hover:-translate-y-0.5 hover:border-accent"
                 onClick={() => {
                   if (step === 0) setWho(option.id as Who);
                   if (step === 1) setNeed(option.id as Need);

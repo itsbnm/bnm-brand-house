@@ -21,6 +21,13 @@ export default function ConsultPage() {
           <li>$250, charged on Paystack. Without the studio key, the time is held and collected against the reference.</li>
           <li>Bring the checklist if you can. Blank answers are allowed. Hidden ones are not useful.</li>
           <li>You receive the time, the reference, and what to send before the call.</li>
+          <li>
+            Once the work begins, the studio opens your{" "}
+            <a href="/portal" className="more">
+              client portal
+            </a>
+            . The weeks, documents, and meeting record stay there.
+          </li>
         </ul>
       </div>
       <ConsultBooker />

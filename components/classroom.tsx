@@ -71,7 +71,7 @@ export function Classroom({ slug }: { slug: string }) {
     return (
       <p className="text-muted">
         Enrol on the course page before the lessons open.{" "}
-        <Link href={`/learn/${slug}`} className="text-gold-2">
+        <Link href={`/learn/${slug}`} className="more">
           Back to the course
         </Link>
       </p>
@@ -79,64 +79,79 @@ export function Classroom({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
-      <aside className="border border-line/70 p-4 lg:max-h-[78vh] lg:overflow-auto">
-        <p className="text-[11px] tracking-[0.22em] text-muted uppercase">{progress}% complete</p>
-        <div className="mt-2 h-1 bg-line">
-          <div className="h-1 bg-accent" style={{ width: `${progress}%` }} />
+    <div className="flex flex-wrap items-start gap-8">
+      <aside aria-label="Course outline" className="min-w-0 flex-[1_1_280px] lg:sticky lg:top-20 lg:max-h-[82vh] lg:max-w-[360px] lg:overflow-auto">
+        <p className="text-[13px] text-muted">BNM Academy</p>
+        <p className="mt-1 text-[21px] font-bold tracking-tight">{data.course.title}</p>
+        <div className="mt-4 flex items-center gap-3">
+          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#e8e8ed]">
+            <div className="h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: `${progress}%` }} />
+          </div>
+          <span className="text-sm text-muted">{progress}% complete</span>
         </div>
-        <div className="mt-5 grid gap-4">
+        <nav className="mt-6 grid gap-5">
           {data.course.modules.map((module, moduleIndex) => (
             <div key={module.id}>
-              <p className="text-xs tracking-[0.16em] text-muted uppercase">Week {moduleIndex + 1}</p>
-              <p className="mt-1 text-sm">{module.title}</p>
-              <ul className="mt-2 grid gap-1">
-                {module.lessons.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      type="button"
-                      className={`w-full px-2 py-1.5 text-left text-sm ${item.id === lesson?.id ? "bg-card" : ""}`}
-                      onClick={() => setCurrent(item.id)}
-                    >
-                      <span className="text-muted">{data.completed.includes(item.id) ? "Done · " : ""}</span>
-                      {item.title}
-                    </button>
-                  </li>
-                ))}
+              <p className="eyebrow px-3 !text-xs">Module {moduleIndex + 1}</p>
+              <p className="px-3 pt-1 pb-2 font-semibold">{module.title}</p>
+              <ul className="grid gap-0.5">
+                {module.lessons.map((item) => {
+                  const on = item.id === lesson?.id;
+                  const finished = data.completed.includes(item.id);
+                  return (
+                    <li key={item.id}>
+                      <button
+                        type="button"
+                        aria-current={on ? "step" : undefined}
+                        className={`flex min-h-11 w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-card ${on ? "bg-card shadow-[inset_3px_0_0_#0066cc]" : ""}`}
+                        onClick={() => setCurrent(item.id)}
+                      >
+                        <Tick done={finished} />
+                        <span className="flex min-w-0 flex-col">
+                          <span className="text-[15px] leading-snug font-medium">{item.title}</span>
+                          <span className="text-[13px] text-muted">
+                            {label(item.kind)}
+                            {item.minutes ? ` · ${item.minutes} min` : ""}
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
-        </div>
+        </nav>
       </aside>
-      <section>
+      <section className="min-w-0 flex-[999_1_560px]">
         {lesson ? (
           <>
-            <p className="text-[11px] tracking-[0.22em] text-muted uppercase">{label(lesson.kind)}</p>
-            <h2 className="mt-2 text-3xl">{lesson.title}</h2>
+            <p className="text-[13px] font-semibold text-muted">{label(lesson.kind)}</p>
+            <h1 className="mt-1.5 text-[clamp(28px,3.6vw,40px)] leading-[1.1]">{lesson.title}</h1>
             <div className="mt-6">
               {lesson.kind === "video" ? <Video url={lesson.videoUrl || ""} /> : null}
               {lesson.kind === "text" ? <Reading text={lesson.text || ""} /> : null}
               {lesson.kind === "book" ? <BookReader lessonId={lesson.id} /> : null}
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-line/70 pt-4">
+            <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#e8e8ed] pt-6">
               <button
                 type="button"
-                className="text-sm text-muted"
+                className="more min-h-11 disabled:opacity-30"
                 disabled={index <= 0}
                 onClick={() => lessons[index - 1] && setCurrent(lessons[index - 1].id)}
               >
-                Previous
+                ‹ Previous
               </button>
-              <button type="button" className="rounded-full bg-accent px-4 py-2 text-sm text-white" onClick={() => void complete()}>
-                {data.completed.includes(lesson.id) ? "Completed" : "Mark as complete"}
+              <button type="button" className="btn-ghost" onClick={() => void complete()}>
+                {data.completed.includes(lesson.id) ? "Completed ✓" : "Mark as complete"}
               </button>
               <button
                 type="button"
-                className="text-sm text-gold-2"
+                className="btn disabled:opacity-30"
                 disabled={index >= lessons.length - 1}
                 onClick={() => lessons[index + 1] && setCurrent(lessons[index + 1].id)}
               >
-                Next
+                {lessons[index + 1] ? `Next: ${lessons[index + 1].title} ›` : "Last lesson"}
               </button>
             </div>
           </>
@@ -148,6 +163,19 @@ export function Classroom({ slug }: { slug: string }) {
   );
 }
 
+function Tick({ done }: { done: boolean }) {
+  return done ? (
+    <svg width="20" height="20" viewBox="0 0 24 24" className="mt-0.5 shrink-0" role="img" aria-label="Completed">
+      <circle cx="12" cy="12" r="10" fill="#1a7f37" />
+      <path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ) : (
+    <svg width="20" height="20" viewBox="0 0 24 24" className="mt-0.5 shrink-0" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.5" fill="none" stroke="#c7c7cc" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
 function label(kind: Lesson["kind"]) {
   if (kind === "video") return "Video";
   if (kind === "book") return "Book";
@@ -156,9 +184,9 @@ function label(kind: Lesson["kind"]) {
 
 function Reading({ text }: { text: string }) {
   return (
-    <div className="grid max-w-2xl gap-4">
+    <div className="grid max-w-[680px] gap-5">
       {text.split(/\n{2,}/).map((paragraph) => (
-        <p key={paragraph.slice(0, 40)} className="leading-8 text-muted">
+        <p key={paragraph.slice(0, 40)} className="text-[19px] leading-[1.65]">
           {paragraph}
         </p>
       ))}
@@ -172,7 +200,7 @@ function Video({ url }: { url: string }) {
   if (youtube) {
     return (
       <iframe
-        className="aspect-video w-full"
+        className="aspect-video w-full rounded-[20px]"
         src={`https://www.youtube-nocookie.com/embed/${youtube[1]}`}
         title="Lesson video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -182,7 +210,7 @@ function Video({ url }: { url: string }) {
   }
   const vimeo = url.match(/vimeo\.com\/(\d+)/);
   if (vimeo) {
-    return <iframe className="aspect-video w-full" src={`https://player.vimeo.com/video/${vimeo[1]}`} title="Lesson video" allowFullScreen />;
+    return <iframe className="aspect-video w-full rounded-[20px]" src={`https://player.vimeo.com/video/${vimeo[1]}`} title="Lesson video" allowFullScreen />;
   }
-  return <video key={url} className="aspect-video w-full bg-black" controls controlsList="nodownload" src={url} />;
+  return <video key={url} className="aspect-video w-full rounded-[20px] bg-black" controls controlsList="nodownload" src={url} />;
 }

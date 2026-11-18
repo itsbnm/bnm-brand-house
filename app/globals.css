@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
+/* Clean, premium light theme. Every page reads these tokens. */
 @theme inline {
-  --color-paper: #040113;
-  --color-ink: #f2f2f3;
-  --color-muted: #b4b3b8;
-  --color-line: #363442;
-  --color-card: #141226;
-  --color-gold: #f46036;
-  --color-gold-2: #82d1fe;
-  --color-accent: #f46036;
-  --font-sans: var(--font-sofia), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-sofia), ui-sans-serif, system-ui, sans-serif;
+  --color-paper: #ffffff;
+  --color-ink: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-line: #d2d2d7;
+  --color-card: #f5f5f7;
+  --color-gold: #6e6e73;
+  --color-gold-2: #0066cc;
+  --color-accent: #0066cc;
+  --color-night: #000000;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -18,13 +20,11 @@ html {
 }
 
 body {
-  background-color: #040113;
-  background-image:
-    linear-gradient(to right, rgb(7 129 198 / 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(7 129 198 / 0.055) 1px, transparent 1px);
-  background-size: 88px 88px;
-  color: #f2f2f3;
+  background-color: #ffffff;
+  color: #1d1d1f;
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -32,30 +32,142 @@ h2,
 h3,
 .display {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
 ::selection {
-  background: #f46036;
-  color: #040113;
+  background: #0066cc;
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid #f46036;
+  outline: 2px solid #0066cc;
   outline-offset: 3px;
 }
 
+/* Soft, rounded cards wherever a page draws a bordered box. */
+main :not(input, select, textarea, button, iframe, video)[class~="border"] {
+  border-radius: 22px;
+}
+main button[class~="border"]:not([class*="rounded-full"]) {
+  border-radius: 16px;
+}
+
+/* Inputs */
+main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+main select,
+main textarea {
+  border-radius: 12px;
+}
+main input:focus,
+main select:focus,
+main textarea:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 4px rgb(0 102 204 / 0.15);
+}
+
+/* Accent buttons: one confident blue */
+.bg-accent:hover {
+  background-color: #0058b0;
+}
+
 .panel {
-  background-color: #1d1a2b;
-  color: #f2f2f3;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
 }
 
 .checker {
-  background-color: #040113;
+  background-color: #ffffff;
   background-image:
-    linear-gradient(45deg, #f2f2f3 25%, transparent 25%, transparent 75%, #f2f2f3 75%),
-    linear-gradient(45deg, #f2f2f3 25%, transparent 25%, transparent 75%, #f2f2f3 75%);
+    linear-gradient(45deg, #1d1d1f 25%, transparent 25%, transparent 75%, #1d1d1f 75%),
+    linear-gradient(45deg, #1d1d1f 25%, transparent 25%, transparent 75%, #1d1d1f 75%);
   background-position: 0 0, 10px 10px;
   background-size: 20px 20px;
+}
+
+/* Shared building blocks */
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6e6e73;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 980px;
+  background: #0066cc;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+.btn:hover {
+  background: #0058b0;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 980px;
+  color: #0066cc;
+  box-shadow: inset 0 0 0 1px #0066cc;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-ghost:hover {
+  background: #0066cc;
+  color: #ffffff;
+}
+.more {
+  color: #0066cc;
+  font-size: 17px;
+  font-weight: 500;
+}
+.more:hover {
+  text-decoration: underline;
+}
+.on-night .more {
+  color: #2997ff;
+}
+
+.lift {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.08);
+}
+
+.reveal {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
 }

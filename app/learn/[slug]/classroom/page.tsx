@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Classroom", robots: { index: false, 
 
 export default function ClassroomPage({ params }: { params: Promise<{ slug: string }> }) {
   return (
-    <Suspense fallback={<p className="px-5 py-14 text-muted">Opening the classroom…</p>}>
+    <Suspense fallback={<p className="px-5 py-14 text-center text-muted">Opening the classroom…</p>}>
       <ClassroomBody params={params} />
     </Suspense>
   );
@@ -22,12 +22,11 @@ async function ClassroomBody({ params }: { params: Promise<{ slug: string }> }) 
   const course = readStore().courses.find((item) => item.slug === slug && item.status === "published");
   if (!course) notFound();
   return (
-    <div className="mx-auto max-w-6xl px-5 py-10">
-      <Link href={`/learn/${slug}`} className="text-sm text-muted">
-        {course.title}
+    <div className="mx-auto max-w-[1360px] px-5 py-8">
+      <Link href={`/learn/${slug}`} className="text-[15px] text-accent hover:underline">
+        ‹ {course.title}
       </Link>
-      <h1 className="mt-2 text-4xl">Classroom</h1>
-      <div className="mt-8">
+      <div className="mt-6">
         <Classroom slug={slug} />
       </div>
     </div>

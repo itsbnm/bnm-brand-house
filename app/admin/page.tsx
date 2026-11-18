@@ -12,8 +12,11 @@ export default function AdminPage() {
         Reserve payments here once they clear. Approve feedback before it is public. Publish a journal note without a developer. Build courses from the courses desk. Services, products, and the fixed articles live with the site content so prices cannot drift from the rate card by accident.
       </p>
       <p className="mt-3 text-sm">
-        <a href="/admin/courses" className="text-gold-2">
+        <a href="/admin/courses" className="more">
           Open the courses desk
+        </a>
+        <a href="/admin/clients" className="more ml-4">
+          Open client portals
         </a>
       </p>
       <AdminApp />

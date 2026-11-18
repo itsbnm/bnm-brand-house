@@ -8,9 +8,9 @@ import { useCart } from "./cart";
 const tee = products.find((product) => product.slug === "heavyweight-tee");
 
 const colours = [
-  { name: "White", fill: "#f3f0e8", ink: "#141226" },
-  { name: "Black", fill: "#141226", ink: "#f2f2f3" },
-  { name: "Red", fill: "#d7263d", ink: "#f7f4ee" },
+  { name: "White", fill: "#ffffff", ink: "#1d1d1f" },
+  { name: "Black", fill: "#1d1d1f", ink: "#f5f5f7" },
+  { name: "Red", fill: "#c8102e", ink: "#ffffff" },
 ];
 
 const suggestions = ["BNM", "THE HOUSE", "LAGOS"];
@@ -28,20 +28,20 @@ export function TeeStudio() {
   const text = line.trim().slice(0, maxLength);
 
   return (
-    <section className="mx-auto mt-24 max-w-6xl px-5">
+    <section className="mx-auto max-w-[1120px] px-5 py-[clamp(96px,12vw,160px)]">
       <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="flex items-center justify-center py-6">
+        <div className="flex min-h-[480px] items-center justify-center rounded-[32px] bg-card py-10">
           <Shirt fill={colour.fill} ink={colour.ink} text={text || "YOUR LINE"} />
         </div>
         <div>
-          <p className="text-[11px] tracking-[0.28em] text-muted uppercase">Merch</p>
-          <h2 className="mt-3 text-4xl">Set the shirt before you order it.</h2>
-          <p className="mt-4 max-w-md text-sm leading-7 text-muted">
+          <p className="text-sm font-semibold text-[#c8102e]">New · House merch</p>
+          <h2 className="mt-3 text-[clamp(36px,4.6vw,56px)] leading-[1.06]">Set the shirt before you order it.</h2>
+          <p className="mt-5 max-w-md text-[19px] leading-[1.47] text-muted">
             Three cloth colours. One line, set by you. A single piece is {money(tee.price)}. Larger runs with your own artwork are quoted separately.
           </p>
 
           <fieldset className="mt-8">
-            <legend className="text-[11px] tracking-[0.2em] text-muted uppercase">Colour</legend>
+            <legend className="text-[15px] font-semibold">Colour</legend>
             <div className="mt-3 flex gap-3">
               {colours.map((item) => (
                 <button
@@ -52,11 +52,11 @@ export function TeeStudio() {
                     setColour(item);
                     setAdded(false);
                   }}
-                  className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm ${
-                    item.name === colour.name ? "border-ink" : "border-line"
+                  className={`flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] ${
+                    item.name === colour.name ? "border-2 border-accent font-semibold" : "border-line"
                   }`}
                 >
-                  <span className="h-3.5 w-3.5 rounded-full border border-white/30" style={{ background: item.fill }} />
+                  <span className="h-5 w-5 rounded-full border border-black/15" style={{ background: item.fill }} />
                   {item.name}
                 </button>
               ))}
@@ -64,7 +64,7 @@ export function TeeStudio() {
           </fieldset>
 
           <div className="mt-8">
-            <label htmlFor="tee-line" className="text-[11px] tracking-[0.2em] text-muted uppercase">
+            <label htmlFor="tee-line" className="text-[15px] font-semibold">
               Line on the chest
             </label>
             <input
@@ -82,7 +82,7 @@ export function TeeStudio() {
                 <button
                   key={suggestion}
                   type="button"
-                  className="rounded-full border border-line px-3 py-1 text-xs tracking-[0.14em]"
+                  className="min-h-9 rounded-full border border-line px-4 text-xs tracking-[0.14em] hover:border-ink"
                   onClick={() => {
                     setLine(suggestion);
                     setAdded(false);
@@ -94,7 +94,7 @@ export function TeeStudio() {
             </div>
           </div>
 
-          <label className="mt-8 block text-[11px] tracking-[0.2em] text-muted uppercase" htmlFor="tee-size">
+          <label className="mt-8 block text-[15px] font-semibold" htmlFor="tee-size">
             Size
             <select
               id="tee-size"
@@ -112,7 +112,7 @@ export function TeeStudio() {
 
           <button
             type="button"
-            className="mt-8 rounded-full bg-accent px-5 py-2.5 text-sm text-white disabled:opacity-40"
+            className="btn mt-9 disabled:opacity-40"
             disabled={text.length === 0}
             onClick={() => {
               cart.add({
@@ -136,9 +136,11 @@ function Shirt({ fill, ink, text }: { fill: string; ink: string; text: string })
   const size = text.length > 12 ? 11 : text.length > 8 ? 14 : 18;
   return (
     <svg viewBox="0 0 280 300" className="h-80 w-auto max-w-full" role="img" aria-label={`${text} on a shirt`}>
-      <ellipse cx="140" cy="286" rx="62" ry="7" fill="#000" opacity="0.28" />
+      <ellipse cx="140" cy="286" rx="62" ry="7" fill="#000" opacity="0.08" />
       <path
         fill={fill}
+        stroke="#d2d2d7"
+        strokeWidth="1"
         fillRule="evenodd"
         d="M92 46c10 16 86 16 96 0l28 12 22 36-22 10-12-22v150H76V82L64 104 42 94l22-36z M112 50c8 14 48 14 56 0 6 12-62 12-56 0z"
       />
@@ -149,7 +151,8 @@ function Shirt({ fill, ink, text }: { fill: string; ink: string; text: string })
         fill={ink}
         fontSize={size}
         letterSpacing="2.4"
-        fontFamily="var(--font-sofia), ui-sans-serif, sans-serif"
+        fontFamily="-apple-system, Helvetica, Arial, sans-serif"
+        fontWeight="700"
       >
         {text}
       </text>

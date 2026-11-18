@@ -9,14 +9,14 @@ export function Field({
 }) {
   return (
     <label className="block text-sm">
-      <span className="text-muted">{label}</span>
+      <span className="font-semibold text-[#424245]">{label}</span>
       {children}
     </label>
   );
 }
 
 export const inputClass =
-  "mt-1 w-full rounded-md border border-line bg-card px-3 py-2.5 text-ink outline-none";
+  "mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-[17px] text-ink outline-none transition";
 
 export function PrimaryLink({
   href,
@@ -26,10 +26,7 @@ export function PrimaryLink({
   children: React.ReactNode;
 }) {
   return (
-    <Link
-      href={href}
-      className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm text-white hover:bg-[#db4f28]"
-    >
+    <Link href={href} className="btn">
       {children}
     </Link>
   );
@@ -43,10 +40,7 @@ export function GhostLink({
   children: React.ReactNode;
 }) {
   return (
-    <Link
-      href={href}
-      className="inline-flex items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm hover:border-ink"
-    >
+    <Link href={href} className="btn-ghost">
       {children}
     </Link>
   );
@@ -62,10 +56,40 @@ export function PageIntro({
   text: string;
 }) {
   return (
-    <header className="mx-auto max-w-3xl">
-      <p className="text-xs tracking-[0.22em] text-gold uppercase">{eyebrow}</p>
-      <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{title}</h1>
-      <p className="mt-4 text-lg leading-8 text-muted">{text}</p>
+    <header className="reveal mx-auto max-w-3xl">
+      <p className="eyebrow">{eyebrow}</p>
+      <h1 className="mt-4 text-[clamp(40px,6vw,72px)] leading-[1.04]">{title}</h1>
+      <p className="mt-5 text-[clamp(19px,2vw,22px)] leading-[1.45] text-muted">{text}</p>
+    </header>
+  );
+}
+
+export function Chapter({
+  number,
+  label,
+  title,
+  muted,
+  text,
+  center = true,
+}: {
+  number: string;
+  label: string;
+  title: string;
+  muted?: string;
+  text?: string;
+  center?: boolean;
+}) {
+  return (
+    <header className={center ? "mx-auto max-w-[900px] text-center" : "max-w-[900px]"}>
+      <p className="eyebrow">
+        Chapter {number} · {label}
+      </p>
+      <h2 className="mt-4 text-[clamp(36px,5.6vw,64px)] leading-[1.06]">
+        {title} {muted ? <span className="text-[#86868b]">{muted}</span> : null}
+      </h2>
+      {text ? (
+        <p className={`mt-5 text-[21px] leading-[1.45] text-muted ${center ? "mx-auto max-w-[620px]" : "max-w-[620px]"}`}>{text}</p>
+      ) : null}
     </header>
   );
 }

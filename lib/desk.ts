@@ -35,6 +35,13 @@ export const deskAnswers = [
     label: "See open slots",
   },
   {
+    q: "Where is my client portal?",
+    keys: ["portal", "dashboard", "milestone", "whatsapp", "login", "password", "project"],
+    a: "Sign in at the client portal with the email and password the studio sent when the consultation became a project. Meetings, documents, requests, and notes from WhatsApp or email are kept there.",
+    href: "/portal",
+    label: "Open the portal",
+  },
+  {
     q: "Can I buy merch today?",
     keys: ["shop", "buy", "merch", "shirt", "cup", "tote", "gift"],
     a: "Ready-made tees, caps, cups, totes, and gift sets have a price and a checkout. Anything with your artwork is a custom run.",

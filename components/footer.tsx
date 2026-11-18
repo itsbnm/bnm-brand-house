@@ -1,83 +1,82 @@
 import Link from "next/link";
 import { studio } from "@/lib/content";
 
+const columns: { title: string; links: [string, string][] }[] = [
+  {
+    title: "Explore",
+    links: [
+      ["Services", "/services"],
+      ["Work", "/work"],
+      ["Shop", "/shop"],
+      ["Academy", "/learn"],
+      ["Resources", "/resources"],
+      ["Journal", "/journal"],
+      ["About", "/about"],
+    ],
+  },
+  {
+    title: "Take a step",
+    links: [
+      ["Find your next step", "/guide"],
+      ["Brand archetype test", "/archetype"],
+      ["Book a consultation", "/consult"],
+      ["Client portal", "/portal"],
+      ["Custom print estimate", "/shop/custom"],
+      ["Contact", "/contact"],
+      ["Client feedback", "/testimonials"],
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      ["Terms", "/legal/terms"],
+      ["Privacy", "/legal/privacy"],
+      ["Refunds", "/legal/refunds"],
+    ],
+  },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-line">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <img src="/logo-lockup.svg" alt={studio.name} className="h-10 w-auto" />
-          <p className="mt-4 text-sm leading-6 text-muted">
-            {studio.promise} {studio.line}
+    <footer className="border-t border-line bg-card text-[13px] text-muted">
+      <div className="mx-auto grid max-w-[1120px] gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="lg:col-span-2">
+          <p className="text-[15px] font-semibold text-ink">{studio.name}</p>
+          <p className="mt-2 leading-6">
+            {studio.promise}
+            <br />
+            {studio.line}
           </p>
+          <div className="mt-5 grid gap-1.5">
+            <a href={`mailto:${studio.email}`} className="text-[#424245] hover:underline">
+              {studio.email}
+            </a>
+            <a href={studio.phoneHref} className="text-[#424245] hover:underline">
+              {studio.phone}
+            </a>
+            <span>{studio.hours}</span>
+            <span>Lagos</span>
+          </div>
         </div>
-        <div className="text-sm leading-7">
-          <p className="text-muted">Visit</p>
-          <Link href="/services" className="block">
-            Services
-          </Link>
-          <Link href="/work" className="block">
-            Work
-          </Link>
-          <Link href="/shop" className="block">
-            Shop
-          </Link>
-          <Link href="/learn" className="block">
-            Courses
-          </Link>
-          <Link href="/resources" className="block">
-            Resources
-          </Link>
-          <Link href="/journal" className="block">
-            Journal
-          </Link>
-        </div>
-        <div className="text-sm leading-7">
-          <p className="text-muted">Take a step</p>
-          <Link href="/guide" className="block">
-            Find your next step
-          </Link>
-          <Link href="/archetype" className="block">
-            Brand archetype
-          </Link>
-          <Link href="/consult" className="block">
-            Book a consultation
-          </Link>
-          <Link href="/shop/custom" className="block">
-            Custom print estimate
-          </Link>
-          <Link href="/contact" className="block">
-            Contact
-          </Link>
-          <Link href="/testimonials" className="block">
-            Client feedback
-          </Link>
-          <Link href="/legal/terms" className="block">
-            Terms
-          </Link>
-          <Link href="/legal/privacy" className="block">
-            Privacy
-          </Link>
-          <Link href="/legal/refunds" className="block">
-            Refunds
-          </Link>
-        </div>
-        <div className="text-sm leading-7">
-          <p className="text-muted">Studio</p>
-          <a className="block" href={`mailto:${studio.email}`}>
-            {studio.email}
-          </a>
-          <a className="block" href={studio.phoneHref}>
-            {studio.phone}
-          </a>
-          <p>{studio.hours}</p>
-          <p>Lagos</p>
-        </div>
+        {columns.map((column) => (
+          <div key={column.title}>
+            <p className="font-semibold text-ink">{column.title}</p>
+            <div className="mt-3 grid gap-2">
+              {column.links.map(([label, href]) => (
+                <Link key={href} href={href} className="text-[#424245] hover:underline">
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="border-t border-line px-5 py-4 text-xs text-muted">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2">
+      <div className="border-t border-line px-5 py-5">
+        <div className="mx-auto flex max-w-[1120px] flex-wrap justify-between gap-2">
           <span>© 2026 {studio.name}</span>
-          <Link href="/admin">Studio desk</Link>
+          <Link href="/admin" className="hover:underline">
+            Studio desk
+          </Link>
         </div>
       </div>
     </footer>

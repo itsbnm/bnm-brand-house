@@ -166,6 +166,83 @@ export type Enrollment = {
   completed: string[];
 };
 
+export type MilestoneStatus = "upcoming" | "current" | "done";
+
+export type Milestone = {
+  id: string;
+  title: string;
+  startsOn: string;
+  endsOn: string;
+  clientExpects: string;
+  studioExpects: string;
+  status: MilestoneStatus;
+};
+
+export type PortalFile = {
+  id: string;
+  name: string;
+  mediaId: string;
+  from: "client" | "studio";
+  note: string;
+  createdAt: string;
+};
+
+export type PortalRequest = {
+  id: string;
+  createdAt: string;
+  title: string;
+  detail: string;
+  status: "open" | "answered";
+  reply: string;
+  repliedAt: string;
+};
+
+export type MeetingNote = {
+  id: string;
+  createdAt: string;
+  heldOn: string;
+  title: string;
+  summary: string;
+};
+
+export type PortalLink = {
+  id: string;
+  createdAt: string;
+  title: string;
+  url: string;
+  note: string;
+};
+
+export type PortalChannel = "portal" | "whatsapp" | "email" | "call";
+
+export type PortalMessage = {
+  id: string;
+  createdAt: string;
+  channel: PortalChannel;
+  author: "client" | "studio";
+  body: string;
+};
+
+export type ClientPortal = {
+  id: string;
+  createdAt: string;
+  name: string;
+  email: string;
+  phone: string;
+  passwordHash: string;
+  project: string;
+  summary: string;
+  startsOn: string;
+  days: number;
+  status: "active" | "complete";
+  milestones: Milestone[];
+  files: PortalFile[];
+  requests: PortalRequest[];
+  meetings: MeetingNote[];
+  links: PortalLink[];
+  messages: PortalMessage[];
+};
+
 export type StudioData = {
   orders: Order[];
   bookings: Booking[];
@@ -174,4 +251,5 @@ export type StudioData = {
   articles: ExtraArticle[];
   courses: Course[];
   enrollments: Enrollment[];
+  portals: ClientPortal[];
 };
